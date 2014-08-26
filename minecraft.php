@@ -47,7 +47,6 @@ class CmdPositioner{
     //Methods for setting and getting positions
     function getPos(){
         $args = func_get_args();
-        var_dump($args);
         $id = array_shift($args);
         //Get entity position (entityId:int) => Vec3
         $s = $this->conn->send_and_receive($this->pkg. ".getPos", $id);
@@ -56,7 +55,6 @@ class CmdPositioner{
 
     function setPos(){
         $args = func_get_args();
-        var_dump($args);
         $id = array_shift($args);
         $data = flatten($args);
         //Set entity position (entityId:int, x,y,z)
@@ -65,28 +63,18 @@ class CmdPositioner{
 
     function getTilePos(){
         $args = func_get_args();
-        var_dump($args);
         $id = array_shift($args);
-        echo "in get TilePos\n";
         $response = $this->conn->send_and_receive($this->pkg.".getTile", $id);
-        var_dump($response);
         $coords =  explode(",", $response);
-        var_dump($coords);
         $intversion = array_map("intval", $coords);
-        var_dump($intversion);
         $result = new Vec3($intversion);
-        var_dump($result);
         return $result;
     }
 
     function setTilePos(){
-        echo "in cmd pos set tile\n";
         $args = func_get_args();
-        var_dump($args);
         $id = array_shift($args);
         $data = flatten($args);
-        var_dump($id);
-        var_dump($data);
         //Set entity tile position (entityId:int) => Vec3
         $this->conn->send($this->pkg.".setTile", $id, intFloor($data));
     }
@@ -131,7 +119,6 @@ class CmdPlayer extends CmdPositioner{
     function setTilePos(){
         echo"insetTilePos\n";
         $data = func_get_args();
-        var_dump($data);
         return parent::setTilePos(array(), $data);
     }
 }
@@ -184,8 +171,6 @@ class CmdEvents{
         $s = $this->conn->send_and_receive("events.block.hits");
         if ($s !== ""){
             $events = explode("|", $s);
-            //echo "events are \n";
-            //var_dump($events);
             $hitsArray = array();
             foreach($events as $e){
                 $e = array_map('intval', explode(",", $e));

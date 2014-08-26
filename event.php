@@ -29,7 +29,6 @@ class BlockEvent {
     public static function Hit(){
         $args = func_get_args();
         $numOfArgs =func_num_args();
-        //var_dump($args);
         if($numOfArgs === 1 && is_array($args[0]) ){
            $args = $args[0];
         }

@@ -4,9 +4,6 @@ error_reporting(E_ALL);
 
 //TODO when php 5.5 more common change to use yield/generator based version
     function flatten($data){
-       // echo "In flatten\n";
-       // var_dump($data);
-       // echo "is array? ".(is_array($data) ? "Array\n\n" : "not an Array\n");
         $flatArray = array();
         if (is_array($data)){
             foreach($data as $el){
@@ -16,20 +13,15 @@ error_reporting(E_ALL);
         }else{
             $flatArray[] = $data;
         }
-        //echo "flatArr = \n";
-       // var_dump($flatArray);
+        
         return $flatArray;
   }
   
   function flattenToString($data){
-  //echo "In flttostr\n";
- // echo "is array? ".(is_array($data) ? "Array\n" : "not an Array\n");
-       //var_dump($data);
+  
        if(is_array($data)){
            #flatten all elements
            $test = flatten($data);
-           //echo "test var \n";
-          // var_dump($test);
            return implode(",", $test);
        }else{
            return $data;
@@ -100,9 +92,6 @@ class Connection {
                 array_push($data, $el);
             }
         }
-        //echo "In Send\n";
-        //var_dump($args);
-        //var_dump($data);
         $msg = "";
         //flatten incoming arguments into a string if is an array
         $msg .= flattenToString($args);

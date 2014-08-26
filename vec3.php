@@ -20,8 +20,7 @@ class Vec3{
     
    
     function __construct1($coords){
-        //echo "in __cons1\n";
-        //var_dump($coords);
+        
         if (is_array($coords)){
             $this->__construct3($coords[0], $coords[1], $coords[2]);
         }
