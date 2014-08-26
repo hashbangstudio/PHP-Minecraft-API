@@ -117,7 +117,6 @@ class CmdPlayer extends CmdPositioner{
     }
 
     function setTilePos(){
-        echo"insetTilePos\n";
         $data = func_get_args();
         return parent::setTilePos(array(), $data);
     }
