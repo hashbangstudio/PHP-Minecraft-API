@@ -97,7 +97,7 @@ class Connection {
         $msg .= flattenToString($args);
         $this->drain();
         $command = "$stem($msg)\n";
-        echo $command."\n";
+        #echo $command."\n";
         $this->lastSent = $command;
         socket_write($this->sock, $command, strlen($command));
     }
